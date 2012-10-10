@@ -1,0 +1,67 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false" renderAs="pdf" StandardController="Invoice_Statement__c" extensions="lineitem,ownerInfo">
+<apex:stylesheet value="{!$Resource.ConsultStyle}"/>
+
+
+<apex:outputPanel styleclass="headerwrapper" layout="block">
+
+<apex:outputPanel styleclass="compName" layout="block"><h2>{!$User.CompanyName}</h2></apex:outputPanel>
+
+<apex:outputPanel styleclass="header" layout="block"><h2>Invoice</h2></apex:outputPanel>
+
+</apex:outputPanel>
+
+<apex:outputPanel styleclass="infowrapper" layout="block">
+
+<apex:outputPanel styleclass="name" layout="block">
+
+    <apex:outputField value="{!Invoice_Statement__c.owner.name}"/>,&nbsp;SalesForce Consultant<br/>
+    <apex:outputField value="{!ownerInfo.Street}"/><br/>
+    <apex:outputField value="{!ownerInfo.City}"/>,&nbsp;
+    <apex:outputField value="{!ownerInfo.State}"/>&nbsp;
+    <apex:outputField value="{!ownerInfo.PostalCode}"/><br/>
+    <apex:outputField value="{!ownerInfo.Phone}"/>
+
+</apex:outputPanel>
+
+<apex:outputPanel styleclass="info" layout="block">
+    Invoice #:&nbsp;<apex:outputField value="{!Invoice_Statement__c.name}"/><br/>
+    Date:&nbsp;<apex:outputField value="{!Invoice_Statement__c.InvoiceDate__c}"/><br/>
+    Hourly rate:&nbsp;<apex:outputField value="{!Invoice_Statement__c.Rate__c}"/><br/>
+    Total this invoice:&nbsp;<apex:outputField value="{!Invoice_Statement__c.TotalCost__c}"/>
+
+</apex:outputPanel>
+
+</apex:outputPanel>
+
+<apex:outputPanel styleclass="paywrapper" layout="block">
+<apex:outputPanel styleclass="pay" layout="block"><h3>Make checks payable to:</h3><br/><apex:outputField value="{!Invoice_Statement__c.owner.name}"/></apex:outputPanel>
+
+<apex:outputPanel styleclass="for" layout="block"><h3>For:</h3><br/>SalesForce Consultation and Customization</apex:outputPanel>
+</apex:outputPanel>
+
+
+
+<apex:pageBlock >
+<apex:outputPanel styleclass="table" layout="block">
+
+<apex:pageBlockTable value="{!lineitem}" var="litem" columnClasses="date, desc, time, cost" cellpadding="8px">
+     <apex:column value="{!litem.Date__c}"/>
+     <apex:column value="{!litem.Description__c}"/>
+     <apex:column value="{!litem.Hours__c}"/>
+     <apex:column value="{!litem.Cost__c}"/>
+</apex:pageBlockTable>
+
+
+<apex:outputPanel styleclass="wrapup" layout="block" >Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <apex:outputField value="{!Invoice_Statement__c.TotalCost__c}"/></apex:outputpanel>
+
+</apex:outputPanel>
+
+<apex:outputPanel styleclass="footer" layout="block">
+    Payment due within 7 days of receipt<br/>
+    <h4>Thank you for your business!</h4>
+</apex:outputPanel>
+
+</apex:pageBlock>
+
+</apex:page>

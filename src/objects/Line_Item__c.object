@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Invoice_Statement__r.Rate__c *   Hours__c</formula>
+        <label>Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(EndTime__c)</formula>
+        <label>Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EndTime__c</fullName>
+        <externalId>false</externalId>
+        <label>End Time</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>if ( Round(24* (EndTime__c -  StartTime__c), 0) &lt; 24*(EndTime__c -  StartTime__c ),
+     Round(24* (EndTime__c -  StartTime__c), 0) +1,
+     Round(24*(EndTime__c -  StartTime__c), 0)
+)</formula>
+        <label>Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Internal_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Internal Description</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Invoice_Statement__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Statement</label>
+        <referenceTo>Invoice_Statement__c</referenceTo>
+        <relationshipLabel>Line Items</relationshipLabel>
+        <relationshipName>Line_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>StartTime__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time</label>
+        <required>true</required>
+        <type>DateTime</type>
+    </fields>
+    <label>Line Item</label>
+    <nameField>
+        <label>Line Item Number</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Line Items</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>
